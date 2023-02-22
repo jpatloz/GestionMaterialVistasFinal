@@ -11,5 +11,5 @@ Plantilla con la configuracion necesaria para hacer una web MVC con javax maven 
 
 ## Documentation
 Aqui se podrá ver la documentacion necesaria sobre la plantilla
-[Documentation](https://linktodocumentation)
+[Documentation](https://docs.google.com/document/d/1XhqFzw4U-_-ttno1f50574ZhrfkBd79Caog6085h4oo/edit)
 
