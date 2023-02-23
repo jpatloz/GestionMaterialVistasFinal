@@ -1,5 +1,7 @@
 package edu.dws.ejemploWeb.aplicacion.dao;
 
+import java.util.Calendar;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -27,7 +29,7 @@ public class Alumnos {
 	@Column(name = "telefono_alumno", nullable = false)
 	private String telefonoAlumno;
 	@OneToOne
-	public Ordenador pc;
+	Ordenador pc;
 
 	public Alumnos(long numeroAlumno, String nombreAlumno, String telefonoAlumno,Ordenador pc) {
 		super();

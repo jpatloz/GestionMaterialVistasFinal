@@ -18,7 +18,7 @@ public class Ordenador {
 	@Column(name = "modelo_pc", nullable = false)
 	private String modelo;
 	@OneToOne(mappedBy = "pc")
-	public Alumnos al;
+	Alumnos al;
 
 	public Ordenador(long identificador, String marca, String modelo) {
 		super();
