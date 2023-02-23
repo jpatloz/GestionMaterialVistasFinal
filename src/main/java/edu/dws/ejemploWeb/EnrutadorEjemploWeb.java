@@ -2,8 +2,8 @@ package edu.dws.ejemploWeb;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import edu.dws.ejemploWeb.Configuracion.AplicacionConfiguracionContexto;
 import edu.dws.ejemploWeb.Web.WebConfiguracionContexto;
+import edu.dws.ejemploWeb.aplicacion.AplicacionConfiguracionContexto;
 
 public class EnrutadorEjemploWeb extends AbstractAnnotationConfigDispatcherServletInitializer{
 
