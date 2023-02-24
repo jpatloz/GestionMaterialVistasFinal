@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import edu.dws.ejemploWeb.Web.servicios.ConsultasImpl;
+import edu.dws.ejemploWeb.aplicacion.DTOs.AlumnosDTO;
+import edu.dws.ejemploWeb.aplicacion.DTOs.OrdenadorDTO;
 import edu.dws.ejemploWeb.aplicacion.dao.Alumnos;
 import edu.dws.ejemploWeb.aplicacion.dao.Ordenador;
 import edu.dws.ejemploWeb.aplicacion.repositorios.AlumnoRepositorio;
-import edu.dws.ejemploWeb.servicios.ConsultasImpl;
 
 @Controller
 public class ControladorIndex {
@@ -23,7 +25,7 @@ public class ControladorIndex {
 	//Formulario de alumnos
 	@RequestMapping(value = "/navegacionFormulario")
 	public String navegacionFormulario(Model modelo) {
-		Alumnos alumno = new Alumnos();
+		AlumnosDTO alumno = new AlumnosDTO();
 		modelo.addAttribute("alumnoV", alumno);
 		return "formulario";
 	}
@@ -38,7 +40,7 @@ public class ControladorIndex {
 	//Formulario insertar ordenadores
 	@RequestMapping(value = "/insertarOrdenadores")
 	public String insertarOrdenadores(Model modelo) {
-		Ordenador ordenata = new Ordenador();
+		OrdenadorDTO ordenata = new OrdenadorDTO();
 		modelo.addAttribute("ordenata", ordenata);
 		return "insertarOrdenadores";
 	}
@@ -47,16 +49,16 @@ public class ControladorIndex {
 
 		@RequestMapping(value = "/listarPcPorIdAlumno")
 		public String listarPcPorIdAlumno(Model modelo) {
-			Alumnos al = new Alumnos();
+			AlumnosDTO al = new AlumnosDTO();
 			modelo.addAttribute("alumno",al);
 			return "listarPcPorIdAlumno";
 		}
 		
-		//Listado de ordenador por id de alumno
+		//Listado de alumnos por id de portatil
 
 				@RequestMapping(value = "/listarAlumnoPorIdPortatil")
 				public String listarAlumnoPorIdPortatil(Model modelo) {
-					Ordenador pc = new Ordenador();
+					OrdenadorDTO pc = new OrdenadorDTO();
 					modelo.addAttribute("ordenador",pc);
 					return "listarAlumnoPorIdPortatil";
 				}

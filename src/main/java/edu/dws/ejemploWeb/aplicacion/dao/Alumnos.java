@@ -38,10 +38,6 @@ public class Alumnos {
 		this.telefonoAlumno = telefonoAlumno;
 		this.pc = pc;
 	}
-	public Alumnos(long numeroAlumno) {
-		super();
-		this.numeroAlumno = numeroAlumno;
-	}
 
 	public Alumnos() {
 		super();

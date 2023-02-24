@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import edu.dws.ejemploWeb.Web.servicios.ConsultasImpl;
+import edu.dws.ejemploWeb.aplicacion.DTOs.ADaoImpl;
+import edu.dws.ejemploWeb.aplicacion.DTOs.AlumnosDTO;
 import edu.dws.ejemploWeb.aplicacion.dao.Alumnos;
 import edu.dws.ejemploWeb.aplicacion.repositorios.AlumnoRepositorio;
-import edu.dws.ejemploWeb.servicios.ConsultasImpl;
 
 @Controller
 public class Controlador {
@@ -24,12 +26,11 @@ public class Controlador {
 	@Autowired
 	AlumnoRepositorio al;
 	ConsultasImpl ci = new ConsultasImpl();
-	List<Alumnos> alumnos = new ArrayList<Alumnos>();
-	Map<String, Object> miModelo = new HashMap<String, Object>();
-
+	ADaoImpl aDao = new ADaoImpl();
 	@RequestMapping(value = "/guardarAlumno", method = RequestMethod.POST)
-	public ModelAndView guardarAlumno(@ModelAttribute("alumnoV") Alumnos alumnoV) {
-		ci.insertarMatriculaAlumno(al,alumnoV);
+	public ModelAndView guardarAlumno(@ModelAttribute("alumnoV") AlumnosDTO alumnoV) {
+		Alumnos alumDao = aDao.alumnoDToToDAo(alumnoV);
+		ci.insertarMatriculaAlumno(al,alumDao);
 		return new ModelAndView("segunda");
 	}
 }

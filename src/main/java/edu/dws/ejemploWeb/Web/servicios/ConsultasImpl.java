@@ -1,4 +1,4 @@
-package edu.dws.ejemploWeb.servicios;
+package edu.dws.ejemploWeb.Web.servicios;
 
 import java.util.ArrayList;
 
@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import edu.dws.ejemploWeb.aplicacion.DTOs.AlumnoToDTO;
+import edu.dws.ejemploWeb.aplicacion.DTOs.AlumnosDTO;
 import edu.dws.ejemploWeb.aplicacion.dao.Alumnos;
 import edu.dws.ejemploWeb.aplicacion.dao.Ordenador;
 import edu.dws.ejemploWeb.aplicacion.repositorios.AlumnoRepositorio;
@@ -14,6 +16,9 @@ import edu.dws.ejemploWeb.aplicacion.repositorios.OrdenadorRepositorio;
 
 @Service
 public class ConsultasImpl implements Consultas {
+	
+	
+	AlumnoToDTO toDTO = new AlumnoToDTO(); 
 
 	// Metodo para insertar alumnos
 	public void insertarMatriculaAlumno(AlumnoRepositorio al, Alumnos eva) {
@@ -29,10 +34,11 @@ public class ConsultasImpl implements Consultas {
 
 	// Metodo para listar todos los alumnos existentes
 	@Override
-	public ArrayList<Alumnos> listarTodosLosAlumnos(AlumnoRepositorio al) {
+	public ArrayList<AlumnosDTO> listarTodosLosAlumnos(AlumnoRepositorio al) {
 
 		ArrayList<Alumnos> alumnos = (ArrayList<Alumnos>) al.findAll();
-		return alumnos;
+		ArrayList<AlumnosDTO> alumnosDTO = toDTO.alumnoListToDTO(alumnos);
+		return alumnosDTO;
 	}
 
 	// Metodo para insertar ordenadores

@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import edu.dws.ejemploWeb.Web.servicios.ConsultasImpl;
+import edu.dws.ejemploWeb.aplicacion.DTOs.ADaoImpl;
+import edu.dws.ejemploWeb.aplicacion.DTOs.OrdenadorDTO;
 import edu.dws.ejemploWeb.aplicacion.dao.Alumnos;
 import edu.dws.ejemploWeb.aplicacion.dao.Ordenador;
 import edu.dws.ejemploWeb.aplicacion.repositorios.AlumnoRepositorio;
 import edu.dws.ejemploWeb.aplicacion.repositorios.OrdenadorRepositorio;
-import edu.dws.ejemploWeb.servicios.ConsultasImpl;
 
 @Controller
 public class ControladorInsertarOrdenador {
@@ -24,11 +26,13 @@ public class ControladorInsertarOrdenador {
 		@Autowired
 		OrdenadorRepositorio pc;
 		ConsultasImpl ci = new ConsultasImpl();
-		Map<String, Object> miModelo = new HashMap<String, Object>();
+		//Instanciamos nuestra clase aDao para poder subir los datos a bbdd
+		ADaoImpl aDao = new ADaoImpl();
 
 		@RequestMapping(value = "/guardarOrdenador", method = RequestMethod.POST)
-		public ModelAndView guardarOrdenador(@ModelAttribute("ordenata") Ordenador ordenata) {
-			ci.insertarAltaOrdenador(pc,ordenata);
+		public ModelAndView guardarOrdenador(@ModelAttribute("ordenata") OrdenadorDTO ordenata) {
+			Ordenador pcDao = aDao.ordenadorDToToDAo(ordenata);
+			ci.insertarAltaOrdenador(pc,pcDao);
 			return new ModelAndView("ordenador");
 		}
 }

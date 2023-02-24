@@ -8,11 +8,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import edu.dws.ejemploWeb.Web.servicios.ConsultasImpl;
+import edu.dws.ejemploWeb.aplicacion.DTOs.ADaoImpl;
+import edu.dws.ejemploWeb.aplicacion.DTOs.AlumnoToDTO;
+import edu.dws.ejemploWeb.aplicacion.DTOs.AlumnosDTO;
+import edu.dws.ejemploWeb.aplicacion.DTOs.OrdenadorDTO;
 import edu.dws.ejemploWeb.aplicacion.dao.Alumnos;
 import edu.dws.ejemploWeb.aplicacion.dao.Ordenador;
 import edu.dws.ejemploWeb.aplicacion.repositorios.AlumnoRepositorio;
 import edu.dws.ejemploWeb.aplicacion.repositorios.OrdenadorRepositorio;
-import edu.dws.ejemploWeb.servicios.ConsultasImpl;
 
 @Controller
 public class ControladorListarAlumnoPorIdPortatil {
@@ -20,11 +24,14 @@ public class ControladorListarAlumnoPorIdPortatil {
 			@Autowired
 			OrdenadorRepositorio pc;
 			ConsultasImpl ci = new ConsultasImpl();
-
+			ADaoImpl aDao = new ADaoImpl();
+			AlumnoToDTO toDto = new AlumnoToDTO();
 			@RequestMapping(value = "/guardarAlumnoPorIdPortatil", method = RequestMethod.POST)
-			public ModelAndView guardarAlumnoPorIdPortatil(@ModelAttribute("ordenador") Ordenador ordenador,Model model) {
-				Alumnos al = ci.buscarAlumnoPorIdDePortatil(pc, ordenador.getIdentificador());
-				model.addAttribute("alumno", al);
+			public ModelAndView guardarAlumnoPorIdPortatil(@ModelAttribute("ordenador") OrdenadorDTO ordenador,Model model) {
+				Ordenador pcDao = aDao.ordenadorDToToDAo(ordenador);
+				Alumnos al = ci.buscarAlumnoPorIdDePortatil(pc, pcDao.getIdentificador());
+				AlumnosDTO alDto = toDto.alumnoToDto(al);
+				model.addAttribute("alumno", alDto);
 				return new ModelAndView("alumnoEncontrado");
 			}
 }

@@ -1,9 +1,10 @@
-package edu.dws.ejemploWeb.servicios;
+package edu.dws.ejemploWeb.Web.servicios;
 
 import java.util.ArrayList;
 
 import javax.transaction.Transactional;
 
+import edu.dws.ejemploWeb.aplicacion.DTOs.AlumnosDTO;
 import edu.dws.ejemploWeb.aplicacion.dao.Alumnos;
 import edu.dws.ejemploWeb.aplicacion.dao.Ordenador;
 import edu.dws.ejemploWeb.aplicacion.repositorios.AlumnoRepositorio;
@@ -25,5 +26,5 @@ public interface Consultas {
 
 	public Alumnos buscarAlumnoPorIdDePortatil(OrdenadorRepositorio pcRepo,long pc);
 
-	public ArrayList<Alumnos> listarTodosLosAlumnos(AlumnoRepositorio al);
+	public ArrayList<AlumnosDTO> listarTodosLosAlumnos(AlumnoRepositorio al);
 }
