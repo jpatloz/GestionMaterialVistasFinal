@@ -19,6 +19,8 @@ public interface Consultas {
 	public void insertarMatriculaAlumno(AlumnoRepositorio al,Alumnos eva);
 
 	public void deleteAlumno(AlumnoRepositorio al,long id);
+	
+	public Ordenador cogerOrdenadorPorId(OrdenadorRepositorio pc,long id);
 
 	public void insertarAltaOrdenador(OrdenadorRepositorio pc,Ordenador orde);
 

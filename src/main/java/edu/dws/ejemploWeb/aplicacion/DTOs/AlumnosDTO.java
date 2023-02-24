@@ -17,9 +17,10 @@ public class AlumnosDTO {
 	private long numeroAlumno;
 	private String nombreAlumno;
 	private String telefonoAlumno;
+	private long idPortatil;
 	Ordenador pc;
 
-	public AlumnosDTO(long numeroAlumno, String nombreAlumno, String telefonoAlumno, Ordenador pc,String mdUuid,Calendar mdDate) {
+	public AlumnosDTO(long numeroAlumno, String nombreAlumno, String telefonoAlumno, Ordenador pc,String mdUuid,Calendar mdDate,long idPortatil) {
 		super();
 		this.numeroAlumno = numeroAlumno;
 		this.nombreAlumno = nombreAlumno;
@@ -27,6 +28,7 @@ public class AlumnosDTO {
 		this.pc = pc;
 		this.mdUuid = mdUuid;
 		this.mdDate = mdDate;
+		this.idPortatil = idPortatil;
 	}
 	
 	public AlumnosDTO(long numeroAlumno, String nombreAlumno, String telefonoAlumno) {
@@ -86,6 +88,15 @@ public class AlumnosDTO {
 
 	public void setMdDate(Calendar mdDate) {
 		this.mdDate = mdDate;
+	}
+	
+
+	public long getIdPortatil() {
+		return idPortatil;
+	}
+
+	public void setIdPortatil(long idPortatil) {
+		this.idPortatil = idPortatil;
 	}
 
 	@Override

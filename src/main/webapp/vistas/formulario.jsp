@@ -22,6 +22,10 @@
 				<td><form:input path="telefonoAlumno" /></td>
 			</tr>
 			<tr>
+				<td><form:label path="idPortatil">Id portatil</form:label></td>
+				<td><form:input path="idPortatil" /></td>
+			</tr>
+			<tr>
 				<td><input type="submit" value="Guardar" /></td>
 			</tr>
 		</table>

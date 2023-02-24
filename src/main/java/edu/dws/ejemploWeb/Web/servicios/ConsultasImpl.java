@@ -63,5 +63,13 @@ public class ConsultasImpl implements Consultas {
 		Alumnos al = orde.getAl();
 		return al;
 	}
+	
+	//Metodo para recoger un ordenador por id
+
+	@Override
+	public Ordenador cogerOrdenadorPorId(OrdenadorRepositorio pc, long id) {
+		Ordenador orde = pc.findById(id).get();
+		return orde;
+	}
 
 }

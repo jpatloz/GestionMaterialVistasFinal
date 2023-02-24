@@ -19,7 +19,9 @@ import edu.dws.ejemploWeb.Web.servicios.ConsultasImpl;
 import edu.dws.ejemploWeb.aplicacion.DTOs.ADaoImpl;
 import edu.dws.ejemploWeb.aplicacion.DTOs.AlumnosDTO;
 import edu.dws.ejemploWeb.aplicacion.dao.Alumnos;
+import edu.dws.ejemploWeb.aplicacion.dao.Ordenador;
 import edu.dws.ejemploWeb.aplicacion.repositorios.AlumnoRepositorio;
+import edu.dws.ejemploWeb.aplicacion.repositorios.OrdenadorRepositorio;
 
 @Controller
 public class Controlador {
@@ -27,14 +29,20 @@ public class Controlador {
 	// Creamos una instancia de nuestro servicio consukltas para hacer el insert
 	@Autowired
 	AlumnoRepositorio al;
+	@Autowired
+	OrdenadorRepositorio pp;
 	ConsultasImpl ci = new ConsultasImpl();
 	ADaoImpl aDao = new ADaoImpl();
+
 	@RequestMapping(value = "/guardarAlumno", method = RequestMethod.POST)
 	public ModelAndView guardarAlumno(@ModelAttribute("alumnoV") AlumnosDTO alumnoV) {
+		long id = alumnoV.getIdPortatil();
 		Alumnos alumDao = aDao.alumnoDToToDAo(alumnoV);
 		alumDao.setMdUuid(UUID.randomUUID().toString());
 		alumDao.setMdDate(Calendar.getInstance());
-		ci.insertarMatriculaAlumno(al,alumDao);
+		Ordenador ordenadoAMeter = ci.cogerOrdenadorPorId(pp, id);
+		alumDao.setPc(ordenadoAMeter);
+		ci.insertarMatriculaAlumno(al, alumDao);
 		return new ModelAndView("segunda");
 	}
 }
