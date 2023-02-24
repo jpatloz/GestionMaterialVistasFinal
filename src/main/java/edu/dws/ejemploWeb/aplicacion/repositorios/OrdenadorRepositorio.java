@@ -2,16 +2,16 @@ package edu.dws.ejemploWeb.aplicacion.repositorios;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import edu.dws.ejemploWeb.aplicacion.dao.Alumnos;
+import edu.dws.ejemploWeb.aplicacion.dao.Ordenador;
 
 /*
- * Interfaz con todos los metodos CRUD del Alumno
+ * Interfaz con todos los metodos CRUD del Ordenador
  * @CrudRepository
- * @Alumnos
+ * @Ordenador
  * @Repository
  * @author Jmenabc
  */
 @Repository
-public interface AlumnoRepositorio extends CrudRepository<Alumnos, Long>{
-	
+public interface OrdenadorRepositorio extends CrudRepository<Ordenador, Long>{
+
 }

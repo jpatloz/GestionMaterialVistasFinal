@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import edu.dws.ejemploWeb.aplicacion.dao.Alumnos;
 import edu.dws.ejemploWeb.aplicacion.dao.Ordenador;
 import edu.dws.ejemploWeb.aplicacion.repositorios.AlumnoRepositorio;
+import edu.dws.ejemploWeb.aplicacion.repositorios.OrdenadorRepositorio;
 
 /*
  * Interfaz que contendra los metodos de nuestro servicio consultas
@@ -18,11 +19,11 @@ public interface Consultas {
 
 	public void deleteAlumno(AlumnoRepositorio al,long id);
 
-	public void insertarAltaOrdenador(AlumnoRepositorio al,Ordenador eva);
+	public void insertarAltaOrdenador(OrdenadorRepositorio pc,Ordenador orde);
 
 	public Ordenador buscarPcPorIdDeAlumno(AlumnoRepositorio al,long idAlumno);
 
-	public Alumnos buscarAlumnoPorIdDePortatil(AlumnoRepositorio al,long pc);
+	public Alumnos buscarAlumnoPorIdDePortatil(AlumnoRepositorio al,OrdenadorRepositorio pcRepo,long pc);
 
 	public ArrayList<Alumnos> listarTodosLosAlumnos(AlumnoRepositorio al);
 }
