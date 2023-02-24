@@ -1,5 +1,7 @@
 package edu.dws.ejemploWeb.aplicacion.DTOs;
 
+import java.util.Calendar;
+
 import edu.dws.ejemploWeb.aplicacion.dao.Alumnos;
 
 /*
@@ -9,6 +11,8 @@ import edu.dws.ejemploWeb.aplicacion.dao.Alumnos;
  */
 public class OrdenadorDTO {
 	// Atributos
+	private String mdUuid;
+	private Calendar mdDate;
 	private long identificador;
 	private String marca;
 	private String modelo;
@@ -16,12 +20,14 @@ public class OrdenadorDTO {
 
 	// Constructor
 
-	public OrdenadorDTO(long identificador, String marca, String modelo, Alumnos al) {
+	public OrdenadorDTO(long identificador, String marca, String modelo, Alumnos al,String mdUuid,Calendar mdDate) {
 		super();
 		this.identificador = identificador;
 		this.marca = marca;
 		this.modelo = modelo;
 		this.al = al;
+		this.mdUuid = mdUuid;
+		this.mdDate = mdDate;
 	}
 	
 	public OrdenadorDTO(long identificador, String marca, String modelo) {
@@ -68,12 +74,28 @@ public class OrdenadorDTO {
 		this.al = al;
 	}
 
-	// toString
+	public String getMdUuid() {
+		return mdUuid;
+	}
+
+	public void setMdUuid(String mdUuid) {
+		this.mdUuid = mdUuid;
+	}
+
+	public Calendar getMdDate() {
+		return mdDate;
+	}
+
+	public void setMdDate(Calendar mdDate) {
+		this.mdDate = mdDate;
+	}
 
 	@Override
 	public String toString() {
-		return "OrdenadorDTO [identificador=" + identificador + ", marca=" + marca + ", modelo=" + modelo + ", al=" + al
-				+ "]";
+		return "OrdenadorDTO [mdUuid=" + mdUuid + ", mdDate=" + mdDate + ", identificador=" + identificador + ", marca="
+				+ marca + ", modelo=" + modelo + ", al=" + al + "]";
 	}
+
+	
 
 }

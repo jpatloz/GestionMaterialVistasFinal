@@ -1,5 +1,9 @@
 package edu.dws.ejemploWeb.aplicacion.DTOs;
 
+import java.util.Calendar;
+
+import javax.persistence.Column;
+
 import edu.dws.ejemploWeb.aplicacion.dao.Ordenador;
 
 /*
@@ -8,17 +12,21 @@ import edu.dws.ejemploWeb.aplicacion.dao.Ordenador;
  */
 public class AlumnosDTO {
 	// Atributos
+	private String mdUuid;
+	private Calendar mdDate;
 	private long numeroAlumno;
 	private String nombreAlumno;
 	private String telefonoAlumno;
 	Ordenador pc;
 
-	public AlumnosDTO(long numeroAlumno, String nombreAlumno, String telefonoAlumno, Ordenador pc) {
+	public AlumnosDTO(long numeroAlumno, String nombreAlumno, String telefonoAlumno, Ordenador pc,String mdUuid,Calendar mdDate) {
 		super();
 		this.numeroAlumno = numeroAlumno;
 		this.nombreAlumno = nombreAlumno;
 		this.telefonoAlumno = telefonoAlumno;
 		this.pc = pc;
+		this.mdUuid = mdUuid;
+		this.mdDate = mdDate;
 	}
 	
 	public AlumnosDTO(long numeroAlumno, String nombreAlumno, String telefonoAlumno) {
@@ -64,10 +72,30 @@ public class AlumnosDTO {
 		this.pc = pc;
 	}
 
+	public String getMdUuid() {
+		return mdUuid;
+	}
+
+	public void setMdUuid(String mdUuid) {
+		this.mdUuid = mdUuid;
+	}
+
+	public Calendar getMdDate() {
+		return mdDate;
+	}
+
+	public void setMdDate(Calendar mdDate) {
+		this.mdDate = mdDate;
+	}
+
 	@Override
 	public String toString() {
-		return "AlumnosDTO [numeroAlumno=" + numeroAlumno + ", nombreAlumno=" + nombreAlumno + ", telefonoAlumno="
-				+ telefonoAlumno + ", pc=" + pc + "]";
+		return "AlumnosDTO [mdUuid=" + mdUuid + ", mdDate=" + mdDate + ", numeroAlumno=" + numeroAlumno
+				+ ", nombreAlumno=" + nombreAlumno + ", telefonoAlumno=" + telefonoAlumno + ", pc=" + pc + "]";
 	}
+	
+	
+
+	
 
 }

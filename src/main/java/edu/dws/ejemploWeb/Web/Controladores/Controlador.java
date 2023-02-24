@@ -1,9 +1,11 @@
 package edu.dws.ejemploWeb.Web.Controladores;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,6 +32,8 @@ public class Controlador {
 	@RequestMapping(value = "/guardarAlumno", method = RequestMethod.POST)
 	public ModelAndView guardarAlumno(@ModelAttribute("alumnoV") AlumnosDTO alumnoV) {
 		Alumnos alumDao = aDao.alumnoDToToDAo(alumnoV);
+		alumDao.setMdUuid(UUID.randomUUID().toString());
+		alumDao.setMdDate(Calendar.getInstance());
 		ci.insertarMatriculaAlumno(al,alumDao);
 		return new ModelAndView("segunda");
 	}

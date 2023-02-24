@@ -12,7 +12,7 @@ import edu.dws.ejemploWeb.aplicacion.dao.Alumnos;
 public class AlumnoToDTO {
 
 	public static AlumnosDTO alumnoToDto(Alumnos al) {
-		AlumnosDTO alumDto = new AlumnosDTO(al.getNumeroAlumno(), al.getNombreAlumno(), al.getTelefonoAlumno(),al.getPc());
+		AlumnosDTO alumDto = new AlumnosDTO(al.getNumeroAlumno(), al.getNombreAlumno(), al.getTelefonoAlumno(),al.getPc(),al.getMdUuid(),al.getMdDate());
 		return alumDto;
 	}
 

@@ -17,6 +17,8 @@ public class ADaoImpl implements ADaoService{
 			alumno.setNumeroAlumno(al.getNumeroAlumno());
 			alumno.setTelefonoAlumno(al.getTelefonoAlumno());
 			alumno.setPc(al.getPc());
+			alumno.setMdUuid(al.getMdUuid());
+			alumno.setMdDate(al.getMdDate());
 		}
 		return alumno;
 	}

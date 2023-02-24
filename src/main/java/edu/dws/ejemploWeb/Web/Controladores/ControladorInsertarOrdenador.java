@@ -1,9 +1,11 @@
 package edu.dws.ejemploWeb.Web.Controladores;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,6 +34,8 @@ public class ControladorInsertarOrdenador {
 		@RequestMapping(value = "/guardarOrdenador", method = RequestMethod.POST)
 		public ModelAndView guardarOrdenador(@ModelAttribute("ordenata") OrdenadorDTO ordenata) {
 			Ordenador pcDao = aDao.ordenadorDToToDAo(ordenata);
+			pcDao.setMdUuid(UUID.randomUUID().toString());
+			pcDao.setMdDate(Calendar.getInstance());
 			ci.insertarAltaOrdenador(pc,pcDao);
 			return new ModelAndView("ordenador");
 		}

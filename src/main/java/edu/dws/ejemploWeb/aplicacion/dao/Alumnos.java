@@ -21,6 +21,10 @@ import javax.persistence.TemporalType;
 public class Alumnos {
 
 	// Atributos
+	@Column(name = "md_uuid", nullable = false)
+	private String mdUuid;
+	@Column(name = "md_date", nullable = false)
+	private Calendar mdDate;
 	@Id
 	@Column(name = "numero_alumno", unique = true, nullable = false)
 	private long numeroAlumno;
@@ -31,12 +35,14 @@ public class Alumnos {
 	@OneToOne
 	Ordenador pc;
 
-	public Alumnos(long numeroAlumno, String nombreAlumno, String telefonoAlumno,Ordenador pc) {
+	public Alumnos(long numeroAlumno, String nombreAlumno, String telefonoAlumno,Ordenador pc,String mdUuid,Calendar mdDate) {
 		super();
 		this.numeroAlumno = numeroAlumno;
 		this.nombreAlumno = nombreAlumno;
 		this.telefonoAlumno = telefonoAlumno;
 		this.pc = pc;
+		this.mdUuid = mdUuid;
+		this.mdDate = mdDate;
 	}
 
 	public Alumnos() {
@@ -75,10 +81,28 @@ public class Alumnos {
 		this.pc = pc;
 	}
 
+	public String getMdUuid() {
+		return mdUuid;
+	}
+
+	public void setMdUuid(String mdUuid) {
+		this.mdUuid = mdUuid;
+	}
+
+	public Calendar getMdDate() {
+		return mdDate;
+	}
+
+	public void setMdDate(Calendar mdDate) {
+		this.mdDate = mdDate;
+	}
+
 	@Override
 	public String toString() {
-		return "Alumnos [numeroAlumno=" + numeroAlumno + ", nombreAlumno=" + nombreAlumno + ", telefonoAlumno="
-				+ telefonoAlumno + ", pc=" + pc.getIdentificador() + "]";
+		return "Alumnos [mdUuid=" + mdUuid + ", mdDate=" + mdDate + ", numeroAlumno=" + numeroAlumno + ", nombreAlumno="
+				+ nombreAlumno + ", telefonoAlumno=" + telefonoAlumno + ", pc=" + pc + "]";
 	}
+
+	
 
 }

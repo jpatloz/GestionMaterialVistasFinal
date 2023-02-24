@@ -1,5 +1,7 @@
 package edu.dws.ejemploWeb.aplicacion.dao;
 
+import java.util.Calendar;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -10,6 +12,10 @@ import javax.persistence.Table;
 @Table(name = "ordenadores", schema = "bd_gestor_material_alumnos")
 public class Ordenador {
 	// Atributos
+	@Column(name = "md_uuid", nullable = false)
+	private String mdUuid;
+	@Column(name = "md_date", nullable = false)
+	private Calendar mdDate;
 	@Id
 	@Column(name = "identificador_pc", unique = true, nullable = false)
 	private long identificador;
@@ -20,11 +26,13 @@ public class Ordenador {
 	@OneToOne(mappedBy = "pc")
 	Alumnos al;
 
-	public Ordenador(long identificador, String marca, String modelo) {
+	public Ordenador(long identificador, String marca, String modelo,String mdUuid,Calendar mdDate) {
 		super();
 		this.identificador = identificador;
 		this.marca = marca;
 		this.modelo = modelo;
+		this.mdUuid = mdUuid;
+		this.mdDate = mdDate;
 	}
 
 	public Ordenador() {
@@ -63,10 +71,28 @@ public class Ordenador {
 		this.al = al;
 	}
 
+	public String getMdUuid() {
+		return mdUuid;
+	}
+
+	public void setMdUuid(String mdUuid) {
+		this.mdUuid = mdUuid;
+	}
+
+	public Calendar getMdDate() {
+		return mdDate;
+	}
+
+	public void setMdDate(Calendar mdDate) {
+		this.mdDate = mdDate;
+	}
+
 	@Override
 	public String toString() {
-		return "Ordenador [identificador=" + identificador + ", marca=" + marca + ", modelo=" + modelo + ", al=" + al
-				+ "]";
+		return "Ordenador [mdUuid=" + mdUuid + ", mdDate=" + mdDate + ", identificador=" + identificador + ", marca="
+				+ marca + ", modelo=" + modelo + ", al=" + al + "]";
 	}
+
+	
 
 }
