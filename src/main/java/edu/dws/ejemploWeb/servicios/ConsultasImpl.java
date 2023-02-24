@@ -1,60 +1,58 @@
 package edu.dws.ejemploWeb.servicios;
-
 import java.util.ArrayList;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import edu.dws.ejemploWeb.aplicacion.dao.Alumnos;
 import edu.dws.ejemploWeb.aplicacion.dao.Ordenador;
 import edu.dws.ejemploWeb.aplicacion.repositorios.AlumnoRepositorio;
 
+@Service
 public class ConsultasImpl implements Consultas{
 	
-	@Autowired
-	AlumnoRepositorio ar;
 
-	@Override
-	@Transactional
-	public void insertarMatriculaAlumno(Alumnos eva) {
-		ar.save(eva);
+	
+	public void insertarMatriculaAlumno(AlumnoRepositorio al,Alumnos eva) {
+		al.save(eva);
 		
 	}
 
 	@Override
-	@Transactional
-	public void deleteAlumno(long id) {
-		ar.deleteById(id);
+	public void deleteAlumno(AlumnoRepositorio al, long id) {
+		al.deleteById(id);
+	}
+
+	@Override
+	public void insertarAltaOrdenador(AlumnoRepositorio al, Ordenador eva) {
+		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	@Transactional
-	public void insertarAltaOrdenador(Ordenador eva) {
-		
-		
-	}
-
-	@Override
-	@Transactional
-	public Ordenador buscarPcPorIdDeAlumno(long idAlumno) {
+	public Ordenador buscarPcPorIdDeAlumno(AlumnoRepositorio al, long idAlumno) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	@Transactional
-	public Alumnos buscarAlumnoPorIdDePortatil(long pc) {
+	public Alumnos buscarAlumnoPorIdDePortatil(AlumnoRepositorio al, long pc) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	@Transactional
-	public ArrayList<Alumnos> listarTodosLosAlumnos() {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Alumnos> listarTodosLosAlumnos(AlumnoRepositorio al) {
+		
+		ArrayList<Alumnos> alumnos = (ArrayList<Alumnos>) al.findAll();
+		return alumnos;
 	}
+
+	
+
+	
+	
 
 }

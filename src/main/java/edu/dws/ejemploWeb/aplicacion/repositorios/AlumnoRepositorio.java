@@ -8,6 +8,7 @@ import edu.dws.ejemploWeb.aplicacion.dao.Alumnos;
  * Interfaz con todos los metodos CRUD
  * @CrudRepository
  * @Alumnos
+ * @Repository
  * @author Jmenabc
  */
 @Repository
