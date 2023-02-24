@@ -16,60 +16,97 @@ import edu.dws.ejemploWeb.aplicacion.repositorios.OrdenadorRepositorio;
 
 @Service
 public class ConsultasImpl implements Consultas {
-	
-	
-	AlumnoToDTO toDTO = new AlumnoToDTO(); 
+
+	AlumnoToDTO toDTO = new AlumnoToDTO();
 
 	// Metodo para insertar alumnos
 	public void insertarMatriculaAlumno(AlumnoRepositorio al, Alumnos eva) {
-		al.save(eva);
+		try {
+			al.save(eva);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 
 	}
 
 	// Metodo para eliminar alumno por id
 	@Override
 	public void deleteAlumno(AlumnoRepositorio al, long id) {
-		al.deleteById(id);
+
+		try {
+			al.deleteById(id);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 	}
 
 	// Metodo para listar todos los alumnos existentes
 	@Override
 	public ArrayList<AlumnosDTO> listarTodosLosAlumnos(AlumnoRepositorio al) {
 
-		ArrayList<Alumnos> alumnos = (ArrayList<Alumnos>) al.findAll();
-		ArrayList<AlumnosDTO> alumnosDTO = toDTO.alumnoListToDTO(alumnos);
-		return alumnosDTO;
+		try {
+			ArrayList<Alumnos> alumnos = (ArrayList<Alumnos>) al.findAll();
+			ArrayList<AlumnosDTO> alumnosDTO = toDTO.alumnoListToDTO(alumnos);
+			return alumnosDTO;
+		} catch (Exception e) {
+			System.out.println(e);
+			return null;
+		}
+		
 	}
 
 	// Metodo para insertar ordenadores
 	@Override
 	public void insertarAltaOrdenador(OrdenadorRepositorio pc, Ordenador orde) {
-		pc.save(orde);
+
+		try {
+			pc.save(orde);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 
 	}
 
 	// Metodo para buscar ordenadores por id del alumno
 	@Override
 	public Ordenador buscarPcPorIdDeAlumno(AlumnoRepositorio al, long idAlumno) {
-		Alumnos alum = al.findById(idAlumno).get();
-		Ordenador devuelto = alum.getPc();
-		return devuelto;
+		try {
+			Alumnos alum = al.findById(idAlumno).get();
+			Ordenador devuelto = alum.getPc();
+			return devuelto;
+		} catch(Exception e) {
+			System.out.println(e);
+			return null;
+		}
+		
 	}
 
 	// Metodo para buscar un alumno por id del portatil
 	@Override
 	public Alumnos buscarAlumnoPorIdDePortatil(OrdenadorRepositorio pcRepo, long pc) {
-		Ordenador orde = pcRepo.findById(pc).get();
-		Alumnos al = orde.getAl();
-		return al;
+		try {
+			Ordenador orde = pcRepo.findById(pc).get();
+			Alumnos al = orde.getAl();
+			return al;
+		}catch(Exception e) {
+			System.out.println(e);
+			return null;
+		}
+		
 	}
-	
-	//Metodo para recoger un ordenador por id
+
+	// Metodo para recoger un ordenador por id
 
 	@Override
 	public Ordenador cogerOrdenadorPorId(OrdenadorRepositorio pc, long id) {
-		Ordenador orde = pc.findById(id).get();
-		return orde;
+		try {
+			Ordenador orde = pc.findById(id).get();
+			return orde;
+		} catch(Exception e) {
+			System.out.println(e);
+			return null;
+		}
+		
 	}
 
 }

@@ -20,7 +20,7 @@ public class AlumnosDTO {
 	private long idPortatil;
 	Ordenador pc;
 
-	public AlumnosDTO(long numeroAlumno, String nombreAlumno, String telefonoAlumno, Ordenador pc,String mdUuid,Calendar mdDate,long idPortatil) {
+	public AlumnosDTO(long numeroAlumno, String nombreAlumno, String telefonoAlumno, Ordenador pc,String mdUuid,Calendar mdDate) {
 		super();
 		this.numeroAlumno = numeroAlumno;
 		this.nombreAlumno = nombreAlumno;
@@ -28,7 +28,6 @@ public class AlumnosDTO {
 		this.pc = pc;
 		this.mdUuid = mdUuid;
 		this.mdDate = mdDate;
-		this.idPortatil = idPortatil;
 	}
 	
 	public AlumnosDTO(long numeroAlumno, String nombreAlumno, String telefonoAlumno) {
