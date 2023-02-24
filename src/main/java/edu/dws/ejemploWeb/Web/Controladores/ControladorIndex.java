@@ -51,4 +51,13 @@ public class ControladorIndex {
 			modelo.addAttribute("alumno",al);
 			return "listarPcPorIdAlumno";
 		}
+		
+		//Listado de ordenador por id de alumno
+
+				@RequestMapping(value = "/listarAlumnoPorIdPortatil")
+				public String listarAlumnoPorIdPortatil(Model modelo) {
+					Ordenador pc = new Ordenador();
+					modelo.addAttribute("ordenador",pc);
+					return "listarAlumnoPorIdPortatil";
+				}
 }

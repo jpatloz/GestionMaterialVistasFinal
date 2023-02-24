@@ -23,7 +23,7 @@ public interface Consultas {
 
 	public Ordenador buscarPcPorIdDeAlumno(AlumnoRepositorio al,long idAlumno);
 
-	public Alumnos buscarAlumnoPorIdDePortatil(AlumnoRepositorio al,OrdenadorRepositorio pcRepo,long pc);
+	public Alumnos buscarAlumnoPorIdDePortatil(OrdenadorRepositorio pcRepo,long pc);
 
 	public ArrayList<Alumnos> listarTodosLosAlumnos(AlumnoRepositorio al);
 }
