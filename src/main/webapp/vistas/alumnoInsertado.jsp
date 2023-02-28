@@ -1,16 +1,12 @@
 <%@ include file="/vistas/cabecera.jsp"%>
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Alumno</title>
+<title>Alumno Insertado</title>
 </head>
 <body>
-	<h1>Alumno</h1>
-	<b>Id: </b><p>${alumno.id_alumno}</p>
-	<b>Nombre: </b><p>${alumno.nombre_alumno}</p>
-	<b>Apellidos: </b><p>${alumno.apellidos_alumno}</p>
+	<h1>Alumno insertado con exito</h1>
 	
 	<br>
 	<br>

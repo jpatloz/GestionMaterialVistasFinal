@@ -5,6 +5,8 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 import edu.dws.ejemploWeb.Web.WebConfiguracionContexto;
 import edu.dws.ejemploWeb.aplicacion.AplicacionConfiguracionContexto;
 
+//Contexto para enrutar la aplicación
+
 public class EnrutadorEjemploWeb extends AbstractAnnotationConfigDispatcherServletInitializer{
 
 	@Override

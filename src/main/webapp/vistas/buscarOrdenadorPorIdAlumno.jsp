@@ -7,18 +7,21 @@
 <title>Formulario Encontrar Pc</title>
 </head>
 <body>
-<h1>Nuevo Alumno</h1>
-	<form:form method="POST" action="guardarPcPorIdAlumno"
-		modelAttribute="alumno">
+	<h1>Buscar Ordenador</h1>
+	<form:form method="POST" action="guardarOrdenadorPorIdAlumno"
+		modelAttribute="id">
 		<table>
 			<tr>
-				<td><form:label path="numeroAlumno">numero de alumno (id)</form:label></td>
-				<td><form:input path="numeroAlumno" /></td>
+				<td><form:label path="id_alumno">Id</form:label></td>
+				<td><form:input path="id_alumno" /></td>
 			</tr>
 			<tr>
 				<td><input type="submit" value="Guardar" /></td>
 			</tr>
 		</table>
 	</form:form>
+	<br>
+	<br>
+	<button type="button" onclick="history.back()">Volver</button>
 </body>
 </html>

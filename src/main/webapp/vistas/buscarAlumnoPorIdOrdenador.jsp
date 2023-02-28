@@ -7,18 +7,21 @@
 <title>Formulario Encontrar Alumno</title>
 </head>
 <body>
-<h1>Encontrar alumno por id del pc</h1>
-	<form:form method="POST" action="guardarAlumnoPorIdPortatil"
-		modelAttribute="ordenador">
+<h1>Buscar Alumno</h1>
+	<form:form method="POST" action="guardarAlumnoPorIdOrdenador"
+		modelAttribute="idOrd">
 		<table>
 			<tr>
-				<td><form:label path="identificador">Identificador</form:label></td>
-				<td><form:input path="identificador" /></td>
+				<td><form:label path="id_ordenador">Id</form:label></td>
+				<td><form:input path="id_ordenador" /></td>
 			</tr>
 			<tr>
 				<td><input type="submit" value="Guardar" /></td>
 			</tr>
 		</table>
 	</form:form>
+	<br>
+	<br>
+	<button type="button" onclick="history.back()">Volver</button>
 </body>
 </html>

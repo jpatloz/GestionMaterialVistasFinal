@@ -1,32 +1,79 @@
 package edu.dws.ejemploWeb.Web.servicios;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import javax.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import edu.dws.ejemploWeb.aplicacion.DTOs.AlumnosDTO;
-import edu.dws.ejemploWeb.aplicacion.dao.Alumnos;
-import edu.dws.ejemploWeb.aplicacion.dao.Ordenador;
-import edu.dws.ejemploWeb.aplicacion.repositorios.AlumnoRepositorio;
-import edu.dws.ejemploWeb.aplicacion.repositorios.OrdenadorRepositorio;
+import edu.dws.ejemploWeb.aplicacion.DTO.GestionAlumnosDTO;
+import edu.dws.ejemploWeb.aplicacion.DTO.GestionAlumnosTODTO;
+import edu.dws.ejemploWeb.aplicacion.dal.GestionAlumnos;
+import edu.dws.ejemploWeb.aplicacion.dal.GestionAlumnosServicios;
+import edu.dws.ejemploWeb.aplicacion.dal.GestionOrdenadores;
+import edu.dws.ejemploWeb.aplicacion.dal.GestionOrdenadoresServicios;
 
-/*
- * Interfaz que contendra los metodos de nuestro servicio consultas
- * @author Jmenabc
- */
-public interface Consultas {
 
-	public void insertarMatriculaAlumno(AlumnoRepositorio al,Alumnos eva);
-
-	public void deleteAlumno(AlumnoRepositorio al,long id);
+@Service
+public class Consultas{
 	
-	public Ordenador cogerOrdenadorPorId(OrdenadorRepositorio pc,long id);
+		@Autowired
+		GestionAlumnosServicios gas;
+		@Autowired
+		GestionOrdenadoresServicios gos;
+	
+		GestionAlumnosTODTO aDto = new GestionAlumnosTODTO();
+		
+		//CONSULTAS DE GESTIÓN ALUMNOS
+	
+		//Consulta para insertar un alumno con su ordenador asignado
+		
+		public void insertarUnaMatricula(GestionAlumnos gestionAlumnos) {
+			gas.save(gestionAlumnos);
+		}
+		
+		//Consulta para coger el ordenador por id 
+		
+		public GestionOrdenadores buscarOrdenadorPorId(long id) {
+			GestionOrdenadores gestionOrdenadores = gos.findById(id).get();
+			return gestionOrdenadores;
+		}
+	
+		// Consulta para buscar todos los alumnos
+	
+		public List<GestionAlumnosDTO> buscarAlumnos() {
+			ArrayList<GestionAlumnos> listaGestionALumnos = (ArrayList<GestionAlumnos>) gas.findAll();
+			ArrayList<GestionAlumnosDTO> listaGestionAlumnosDTO = aDto.listaGestionAlumnosDTO(listaGestionALumnos);
+			return listaGestionAlumnosDTO;
+	    }
+		
+		//Consulta para eliminar a un alumno
+		
+		public void eliminarUnAlumno(long id) {
+			gas.deleteById(id);
+		}
+		
+		//Consulta para buscar un alumno por id de ordenador
+		
+		public GestionAlumnos buscarAlumnoPorIdOrdenador(long idOrd) {
+			GestionOrdenadores ordenadores = gos.findById(idOrd).get();
+			GestionAlumnos alumno = ordenadores.getAlumno();
+			return alumno;
+		}
+		
+		
+		//CONSULTAS DE GESTIÓN ORDENADORES
+		
+		//Consulta para buscar un ordenador por id de alumno
+		public GestionOrdenadores buscarOrdenadorPorIdAlumno(long id) {
+			GestionAlumnos alumnos = gas.findById(id).get();
+			GestionOrdenadores ordenadores = alumnos.getOrdenadores();
+			return ordenadores;
+		}
 
-	public void insertarAltaOrdenador(OrdenadorRepositorio pc,Ordenador orde);
-
-	public Ordenador buscarPcPorIdDeAlumno(AlumnoRepositorio al,long idAlumno);
-
-	public Alumnos buscarAlumnoPorIdDePortatil(OrdenadorRepositorio pcRepo,long pc);
-
-	public ArrayList<AlumnosDTO> listarTodosLosAlumnos(AlumnoRepositorio al);
+		//Consulta para insertar un ordenador
+		
+		public void insertarUnOrdenador(GestionOrdenadores gestionOrdenadores) {
+			gos.save(gestionOrdenadores);
+		}
 }

@@ -17,13 +17,14 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
-import edu.dws.ejemploWeb.aplicacion.dao.Alumnos;
+import edu.dws.ejemploWeb.aplicacion.dal.GestionAlumnos;
 
 @Configuration
 @ComponentScan
-@PropertySource("classpath:application.properties")
-@EnableJpaRepositories("edu.dws.ejemploWeb.aplicacion.repositorios")
+@PropertySource("classpath:application.properties") //Esta anotación indica el archivo donde se define las propiedades del contexto
+@EnableJpaRepositories("edu.dws.ejemploWeb.aplicacion.dal") //esta anotación escanea el paquete para que se permita usar jpa
 public class AplicacionConfiguracionContexto {
+	
 	@Autowired
 	private Environment contextoPropiedades;
 
@@ -42,7 +43,7 @@ public class AplicacionConfiguracionContexto {
 
 		LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
 		emf.setDataSource(dataSource());
-		emf.setPackagesToScan(Alumnos.class.getPackage().getName());
+		emf.setPackagesToScan(GestionAlumnos.class.getPackage().getName());
 
 		HibernateJpaVendorAdapter hibernateJpa = new HibernateJpaVendorAdapter();
 		hibernateJpa.setDatabase(Database.POSTGRESQL);
@@ -55,8 +56,6 @@ public class AplicacionConfiguracionContexto {
 		jpaProperties.put("hibernate.hbm2ddl.auto", contextoPropiedades.getProperty("hibernate.hbm2ddl.auto"));
 		jpaProperties.put("hibernate.show_sql", contextoPropiedades.getProperty("hibernate.show_sql"));
 		jpaProperties.put("hibernate.format_sql", contextoPropiedades.getProperty("hibernate.format_sql"));
-		// jpaProperties.put("hibernate.bytecode.provider",
-		// contextoPropiedades.getProperty("hibernate.bytecode.provider"));
 		emf.setJpaProperties(jpaProperties);
 
 		return emf;
@@ -64,8 +63,8 @@ public class AplicacionConfiguracionContexto {
 
 	@Bean
 	public JpaTransactionManager transactionManager() {
-		JpaTransactionManager txnMgr = new JpaTransactionManager();
-		txnMgr.setEntityManagerFactory(entityManagerFactory().getObject());
-		return txnMgr;
+		JpaTransactionManager transactionManager = new JpaTransactionManager();
+		transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
+		return transactionManager;
 	}
 }

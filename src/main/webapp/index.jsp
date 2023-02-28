@@ -3,14 +3,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Menu Gestion Material</title>
+<title>Menú para la Gestión Escolar</title>
 </head>
 <body>
-<a href="<c:url value="navegacionFormulario" />">1.-Insertar Alumno</a>
-<a href="<c:url value="insertarOrdenadores" />">2.-Insertar Ordenador</a>
-<a href="<c:url value="listarPcPorIdAlumno" />">3.-Listar Pc por id de alumno</a>
-<a href="<c:url value="listarAlumnoPorIdPortatil" />">4.-Listar Alumno por id de portatil</a>
-<a href="<c:url value="listarAlumnos" />">5.-Listar Alumnos</a>
+<a href="<c:url value="insertarAlumnos" />">1.-Insertar Alumno</a><br>
+<a href="<c:url value="insertarOrdenadores" />">2.-Insertar Ordenador</a><br>
+<a href="<c:url value="buscarOrdenadorPorIdAlumno" />">3.-Buscar ordenador por id de alumno</a><br>
+<a href="<c:url value="buscarAlumnoPorIdOrdenador" />">4.-Buscar alumno por id de ordenador</a><br>
+<a href="<c:url value="buscarTodosLosAlumnos" />">5.-Listado de todos los alumnos</a>
 
 </body>
 </html>

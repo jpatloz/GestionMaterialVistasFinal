@@ -7,5 +7,9 @@
 </head>
 <body>
 	<h1>Ordenador insertado con exito</h1>
+
+	<br>
+	<br>
+	<button type="button" onclick="history.back()">Volver</button>
 </body>
 </html>

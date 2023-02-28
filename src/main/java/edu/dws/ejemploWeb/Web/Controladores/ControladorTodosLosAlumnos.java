@@ -13,29 +13,31 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import edu.dws.ejemploWeb.Web.servicios.ConsultasImpl;
-import edu.dws.ejemploWeb.aplicacion.DTOs.AlumnosDTO;
-import edu.dws.ejemploWeb.aplicacion.dao.Alumnos;
-import edu.dws.ejemploWeb.aplicacion.repositorios.AlumnoRepositorio;
+import edu.dws.ejemploWeb.Web.servicios.Consultas;
+import edu.dws.ejemploWeb.aplicacion.DTO.GestionAlumnosDTO;
+import edu.dws.ejemploWeb.aplicacion.dal.GestionAlumnos;
 
 @Controller
 public class ControladorTodosLosAlumnos {
+	
 	// Creamos una instancia de nuestro servicio consukltas para hacer el insert
 	@Autowired
-	AlumnoRepositorio al;
-	ConsultasImpl ci = new ConsultasImpl();
+	Consultas consulta;
 	Map<String, Object> miModelo = new HashMap<String, Object>();
 
-	@RequestMapping(value = "/listarAlumnos", method = RequestMethod.GET)
-	public ModelAndView listarAlumnos() {
-		ArrayList<AlumnosDTO> alumnos = ci.listarTodosLosAlumnos(al);
-		miModelo.put("alumnos", alumnos);
-		return new ModelAndView("listadoTodosLosAlumnos", "miModelo", miModelo);
+	//En este caso usamos el método get porque necesitamos cargar la lista en este controlador, ya que 
+	//es la función perteneciente a la vista
+	
+	@RequestMapping(value = "/buscarTodosLosAlumnos", method = RequestMethod.GET)
+	public ModelAndView buscarTodosLosAlumnos() {
+		ArrayList<GestionAlumnosDTO> listaGestionAlumnos = (ArrayList<GestionAlumnosDTO>) consulta.buscarAlumnos();
+		miModelo.put("alumnos", listaGestionAlumnos);
+		return new ModelAndView("buscarTodosLosAlumnos", "miModelo", miModelo);
 	}
 
 	@RequestMapping(value = "/eliminarAlumno")
-	public ModelAndView eliminarAlumno(@RequestParam long numeroAlumno) {
-		ci.deleteAlumno(al, numeroAlumno);
-		return new ModelAndView("listadoTodosLosAlumnos");
+	public ModelAndView eliminarAlumno(@RequestParam long id_alumno) {
+		consulta.eliminarUnAlumno(id_alumno);
+		return new ModelAndView("buscarTodosLosAlumnos");
 	}
 }

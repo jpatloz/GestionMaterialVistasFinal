@@ -14,29 +14,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import edu.dws.ejemploWeb.Web.servicios.ConsultasImpl;
-import edu.dws.ejemploWeb.aplicacion.DTOs.ADaoImpl;
-import edu.dws.ejemploWeb.aplicacion.DTOs.OrdenadorDTO;
-import edu.dws.ejemploWeb.aplicacion.dao.Alumnos;
-import edu.dws.ejemploWeb.aplicacion.dao.Ordenador;
-import edu.dws.ejemploWeb.aplicacion.repositorios.AlumnoRepositorio;
-import edu.dws.ejemploWeb.aplicacion.repositorios.OrdenadorRepositorio;
+import edu.dws.ejemploWeb.Web.servicios.Consultas;
+import edu.dws.ejemploWeb.aplicacion.DTO.ADaoServicioImpl;
+import edu.dws.ejemploWeb.aplicacion.DTO.GestionOrdenadoresDTO;
+import edu.dws.ejemploWeb.aplicacion.dal.GestionAlumnos;
+import edu.dws.ejemploWeb.aplicacion.dal.GestionOrdenadores;
 
 @Controller
 public class ControladorInsertarOrdenador {
+	
 	// Creamos una instancia de nuestro servicio consukltas para hacer el insert
+	
 		@Autowired
-		OrdenadorRepositorio pc;
-		ConsultasImpl ci = new ConsultasImpl();
+		Consultas consulta;
 		//Instanciamos nuestra clase aDao para poder subir los datos a bbdd
-		ADaoImpl aDao = new ADaoImpl();
+		ADaoServicioImpl aDao = new ADaoServicioImpl();
 
 		@RequestMapping(value = "/guardarOrdenador", method = RequestMethod.POST)
-		public ModelAndView guardarOrdenador(@ModelAttribute("ordenata") OrdenadorDTO ordenata) {
-			Ordenador pcDao = aDao.ordenadorDToToDAo(ordenata);
-			pcDao.setMdUuid(UUID.randomUUID().toString());
-			pcDao.setMdDate(Calendar.getInstance());
-			ci.insertarAltaOrdenador(pc,pcDao);
-			return new ModelAndView("ordenador");
+		public ModelAndView guardarOrdenador(@ModelAttribute("ordenadorInsertado") GestionOrdenadoresDTO ordenadorInsertado){
+			GestionOrdenadores gestionOrdenadores = aDao.GestionOrdenadoresDTOADAO(ordenadorInsertado);
+			gestionOrdenadores.setMd_uuid(UUID.randomUUID().toString());
+			gestionOrdenadores.setMd_date(Calendar.getInstance());
+			consulta.insertarUnOrdenador(gestionOrdenadores);
+			return new ModelAndView("insertarOrdenador");
 		}
 }
